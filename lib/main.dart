@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/stless_stful/login_form_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,9 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyFirstWidget(
-        title: "Hey i am new App",
-      ),
+
+      home: const LoginScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -46,15 +46,14 @@ class _MyFirstWidgetState extends State<MyFirstWidget> {
 
   // @override
   // void didChangeDependencies() {
-  //   print("object");
   //   super.didChangeDependencies();
+  //   print("I am didChangeDependencies called");
   // }
 
   // @override
-  // void didUpdateWidget(MyFirstWidget oldWidget) {
-  //   print("I am did update widget");
-
+  // void didUpdateWidget(oldWidget) {
   //   super.didUpdateWidget(oldWidget);
+  //   print('i am didUpdateWidget called');
   // }
 
   @override
@@ -102,6 +101,7 @@ class _MyFirstWidgetState extends State<MyFirstWidget> {
             ElevatedButton(
               onPressed: () {
                 print("I am pressed");
+                setState(() {});
               },
               child: const Text("Click me"),
             ),
@@ -160,7 +160,6 @@ class _MyFirstWidgetState extends State<MyFirstWidget> {
               ),
               child: const Text("Buy now"),
             ),
-        
           ],
         ),
       ),
