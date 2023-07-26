@@ -24,7 +24,23 @@ class ProfileScreen extends StatelessWidget {
               child: TabBarView(
                 children: [
                   Container(
-                    child: const Text("i am all element"),
+                    child: PopupMenuButton(
+                      offset: const Offset(1, 0),
+                      itemBuilder: (context) {
+                        return [
+                          const PopupMenuItem(
+                            child: Text("Item 1"),
+                          ),
+                          const PopupMenuItem(
+                            child: Text("Item 2"),
+                          ),
+                          const PopupMenuItem(
+                            child: Text("Item 3"),
+                          ),
+                        ];
+                      },
+                      icon: const Icon(Icons.more_vert),
+                    ),
                   ),
                   Container(
                     color: Colors.teal,
