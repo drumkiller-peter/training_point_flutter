@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/using_google_fonts/google_font_screen.dart';
 import 'package:flutter_application_1/screens/video_player_example/video_player_screen.dart';
 
 class FilePickerScreen extends StatefulWidget {
@@ -41,6 +42,17 @@ class _FilePickerScreenState extends State<FilePickerScreen> {
               }
             },
             child: const Text("Pick a file"),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const GoogleFontScreen(),
+                ),
+              );
+            },
+            child: const Text("Go to google font screen"),
           ),
         ],
       ),
