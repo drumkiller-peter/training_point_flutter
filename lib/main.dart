@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/file_picker_example/file_picker_screen.dart';
+import 'package:flutter_application_1/screens/simple_api_call/user_data_Screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,12 @@ class MyApp extends StatelessWidget {
       // home: const HomeScreen(
       //   userName: '',
       // ),
-      home: const FilePickerScreen(),
+      // home: const FilePickerScreen(),
+      // home: const ImagePickerScreen(),
+      // home: const GoogleFontScreen(),
+      // home: const GetPostScreen(),
+      home: const UserDataScreen(),
+      // home: const SimpleApiCallScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
