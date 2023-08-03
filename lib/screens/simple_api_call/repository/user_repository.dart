@@ -8,9 +8,12 @@ import 'package:http/http.dart' as http;
 class UserRepository {
   Future<List<UserModel>?> getUser() async {
     List<UserModel> userModelList = [];
-
+    String query = "?q=Paris&days=5";
     final response =
-        await http.get(Uri.parse("http://127.0.0.1:5500/assets/"));
+        await http.get(Uri.parse("http://192.168.1.65:3000/data/$query"), headers: {
+      'key': "your api key",
+
+    });
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
       log(decodedData.runtimeType.toString());
@@ -31,10 +34,37 @@ class UserRepository {
     log(userModel.toJson().toString());
 
     final response = await http.post(
-      Uri.parse("http://192.168.1.69:3000/data/"),
-      body: jsonEncode(
-        userModel.toJson(),
-      ),
+      Uri.parse("http://192.168.1.65:3000/data/"),
+      body: userModel.toJson(),
+    );
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      log(response.body.toString());
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> editUserData(UserModel userModel) async {
+    log(userModel.toJson().toString());
+
+    final response = await http.put(
+      Uri.parse("http://192.168.1.65:3000/data/${userModel.id}"),
+      body: userModel.toJson(),
+    );
+    if (response.statusCode == 201 || response.statusCode == 200) {
+      log(response.body.toString());
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> deleteUserData(UserModel userModel) async {
+    log(userModel.toJson().toString());
+
+    final response = await http.delete(
+      Uri.parse("http://192.168.1.65:3000/data/${userModel.id}"),
     );
     if (response.statusCode == 201 || response.statusCode == 200) {
       log(response.body.toString());
@@ -46,12 +76,12 @@ class UserRepository {
 }
 
 class UserModel {
-  final int id;
+  final int? id;
   final String name;
   final String position;
 
   UserModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.position,
   });
@@ -65,7 +95,7 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() => {
-        "id": id,
+        // "id": id,
         "name": name,
         "position": position,
       };
